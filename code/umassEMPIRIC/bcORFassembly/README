@@ -1,0 +1,18 @@
+02_bcclean.pl - takes net assembly file and reorder's based on ORF variants
+               removes ORF variants from list that were unplanned/unintended
+
+03_bclistident.pl - takes cleaned 02 bc file and outputs duplicate bcs as 
+                    std out > reject file
+
+03b_bchamcheck.pl - NOTE: only suggested for files with <40,000 bc
+                  takes some time to run on larger files
+                  takes cleaned02 bc file and calculates minimum hamming
+                  distance between all barcodes. Stdout is list of all bc
+                  and min hamming distances. Also makes reject_file with
+                  with barcodes that differ by less than cutoff (input param)
+
+04_bcprune.pl - takes cleaned02 bc file and reject03 file, removes barcodes
+               in reject list and outputs cleaned04 bc file. Stdout is list
+               of rejected barcodes and the position and ORF variant. Cutoff
+               parameter is in input (min ham). The cleaned04 bc file is
+               good to use for analyzing frequencies from SE reads of bcs.
